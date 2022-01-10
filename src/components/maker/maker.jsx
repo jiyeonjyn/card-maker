@@ -53,11 +53,15 @@ const Maker = ({ authService }) => {
       }
     });
   }); //로그인 되지 않은 상태면 자동으로 '/' 페이지로 이동
+  const addCard = (card) => {
+    const updated = [...cards, card];
+    setCards(updated);
+  };
   return (
     <section className={styles.maker}>
       <Header onLogout={onLogout} />
       <div className={styles.container}>
-        <Editor cards={cards} />
+        <Editor cards={cards} addCard={addCard} />
         <Preview cards={cards} />
       </div>
       <Footer />
