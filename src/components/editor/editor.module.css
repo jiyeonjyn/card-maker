@@ -1,0 +1,26 @@
+@value makerGreen, makerLightGrey from '../../common/colors.css';
+@value mediaQuery from '../../common/size.css';
+
+.editor {
+  flex-basis: 50%;
+  padding: 0.5em 0;
+  border-right: 1px solid makerLightGrey;
+}
+
+.title {
+  width: 100%;
+  text-align: center;
+  color: makerGreen;
+  padding: 1.5em;
+}
+
+.forms {
+  padding: 0.5em 2em;
+}
+
+@media screen and (max-width: mediaQuery) {
+  .editor {
+    border-right: 0;
+    border-bottom: 1px solid makerLightGrey;
+  }
+}

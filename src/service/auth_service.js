@@ -19,13 +19,7 @@ class AuthService {
   }
 
   logout() {
-    signOut(this.auth) //
-      .then(() => {
-        // Sign-out successful.
-      })
-      .catch((error) => {
-        // An error happened.
-      });
+    signOut(this.auth);
   }
 
   onAuthChange(onUserChanged) {
