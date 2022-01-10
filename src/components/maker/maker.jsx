@@ -7,8 +7,8 @@ import Header from '../header/header';
 import styles from './maker.module.css';
 
 const Maker = ({ authService }) => {
-  const [cards, setCards] = useState([
-    {
+  const [cards, setCards] = useState({
+    1: {
       id: '1',
       name: 'Ellie',
       company: 'Samsung',
@@ -19,7 +19,7 @@ const Maker = ({ authService }) => {
       fileName: 'ellie',
       fileURL: null,
     },
-    {
+    2: {
       id: '2',
       name: 'Ellie2',
       company: 'Samsung',
@@ -30,7 +30,7 @@ const Maker = ({ authService }) => {
       fileName: 'ellie',
       fileURL: null,
     },
-    {
+    3: {
       id: '3',
       name: 'Ellie3',
       company: 'Samsung',
@@ -41,7 +41,7 @@ const Maker = ({ authService }) => {
       fileName: 'ellie',
       fileURL: null,
     },
-  ]);
+  });
   const history = useHistory();
   const onLogout = () => {
     authService.logout();
@@ -53,15 +53,36 @@ const Maker = ({ authService }) => {
       }
     });
   }); //로그인 되지 않은 상태면 자동으로 '/' 페이지로 이동
-  const addCard = (card) => {
-    const updated = [...cards, card];
-    setCards(updated);
+  const createOrUpdateCard = (card) => {
+    setCards((cards) => {
+      const updated = { ...cards, [card.id]: card };
+      return updated;
+    });
+  };
+  // const createOrUpdateCard = (card) => {
+  //   setCards((cards) => {
+  //     const updated = { ...cards };
+  //     updated[card.id] = card;
+  //     return updated;
+  //   }); // 콜백함수의 인자 cards는 setCards가 호출될 때의 cards를 의미함
+  // };
+  const deleteCard = (card) => {
+    setCards((cards) => {
+      const updated = { ...cards };
+      delete updated[card.id];
+      return updated;
+    });
   };
   return (
     <section className={styles.maker}>
       <Header onLogout={onLogout} />
       <div className={styles.container}>
-        <Editor cards={cards} addCard={addCard} />
+        <Editor
+          cards={cards}
+          addCard={createOrUpdateCard}
+          updateCard={createOrUpdateCard}
+          deleteCard={deleteCard}
+        />
         <Preview cards={cards} />
       </div>
       <Footer />
