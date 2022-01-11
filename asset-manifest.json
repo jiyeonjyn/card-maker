@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/card-maker/static/css/main.7db084a3.css",
-    "main.js": "/card-maker/static/js/main.092b9dfe.js",
+    "main.js": "/card-maker/static/js/main.d388824d.js",
     "index.html": "/card-maker/index.html",
     "main.7db084a3.css.map": "/card-maker/static/css/main.7db084a3.css.map",
-    "main.092b9dfe.js.map": "/card-maker/static/js/main.092b9dfe.js.map"
+    "main.d388824d.js.map": "/card-maker/static/js/main.d388824d.js.map"
   },
   "entrypoints": [
     "static/css/main.7db084a3.css",
-    "static/js/main.092b9dfe.js"
+    "static/js/main.d388824d.js"
   ]
 }
