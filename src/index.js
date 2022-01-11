@@ -18,13 +18,11 @@ const fileInput = memo((props) => (
 
 ReactDOM.render(
   <React.StrictMode>
-    <HashRouter>
-      <App
-        authService={authService}
-        FileInput={fileInput} // 컴퍼넌트 prop인 경우는 대문자로 시작
-        cardRepository={cardRepository}
-      />
-    </HashRouter>
+    <App
+      authService={authService}
+      FileInput={fileInput} // 컴포넌트 prop인 경우는 대문자로 시작
+      cardRepository={cardRepository}
+    />
   </React.StrictMode>,
   document.getElementById('root')
 );
