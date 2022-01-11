@@ -7,6 +7,7 @@ import AuthService from './service/auth_service';
 import ImageUploader from './service/image_uploader';
 import ImageFileInput from './components/image_file_input/image_file_input';
 import CardRepository from './service/card_repository';
+import { HashRouter } from 'react-router-dom/cjs/react-router-dom.min';
 
 const authService = new AuthService();
 const cardRepository = new CardRepository();
@@ -17,11 +18,13 @@ const fileInput = memo((props) => (
 
 ReactDOM.render(
   <React.StrictMode>
-    <App
-      authService={authService}
-      FileInput={fileInput} // 컴퍼넌트 prop인 경우는 대문자로 시작
-      cardRepository={cardRepository}
-    />
+    <HashRouter>
+      <App
+        authService={authService}
+        FileInput={fileInput} // 컴퍼넌트 prop인 경우는 대문자로 시작
+        cardRepository={cardRepository}
+      />
+    </HashRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
