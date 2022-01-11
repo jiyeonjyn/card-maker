@@ -7,7 +7,7 @@ import Maker from './components/maker/maker';
 function App({ authService, FileInput, cardRepository }) {
   return (
     <div className={styles.app}>
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.REACT_APP_BASE_URL}>
         <Switch>
           <Route exact path="/">
             <Login authService={authService} />
