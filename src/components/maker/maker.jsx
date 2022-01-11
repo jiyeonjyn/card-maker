@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Preview from '../preview/preview';
 import Editor from '../editor/editor';
@@ -12,9 +12,10 @@ const Maker = ({ authService, FileInput, cardRepository }) => {
   const [cards, setCards] = useState({});
   const [userId, setUserId] = useState(historyState && historyState.id);
 
-  const onLogout = () => {
+  const onLogout = useCallback(() => {
     authService.logout();
-  }; //로그아웃 되면 아래 useEffect에 의해 '/' 페이지로 이동
+  }, [authService]); //로그아웃 되면 아래 useEffect에 의해 '/' 페이지로 이동
+
   useEffect(() => {
     authService.onAuthChange((user) => {
       if (user) {
@@ -23,7 +24,8 @@ const Maker = ({ authService, FileInput, cardRepository }) => {
         history.push('/'); //로그인 되지 않은 상태면 자동으로 '/' 페이지로 이동
       }
     });
-  });
+  }, [authService, userId, history]);
+
   useEffect(() => {
     if (!userId) {
       return;
@@ -32,14 +34,20 @@ const Maker = ({ authService, FileInput, cardRepository }) => {
       setCards(cards);
     });
     return () => stopSync();
-  }, [userId]);
-  const createOrUpdateCard = (card) => {
-    setCards((cards) => {
-      const updated = { ...cards, [card.id]: card };
-      return updated;
-    });
-    cardRepository.saveCard(userId, card);
-  };
+    //return stopSync()로 해주게 되면 바로 실행되기 때문에 콜백함수 형태로 리턴
+    //컴포넌트가 unmount 될 때 호출
+  }, [userId, cardRepository]);
+
+  const createOrUpdateCard = useCallback(
+    (card) => {
+      setCards((cards) => {
+        const updated = { ...cards, [card.id]: card };
+        return updated;
+      });
+      cardRepository.saveCard(userId, card);
+    },
+    [userId, cardRepository]
+  );
   // const createOrUpdateCard = (card) => {
   //   setCards((cards) => {
   //     const updated = { ...cards };

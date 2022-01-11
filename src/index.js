@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import ReactDOM from 'react-dom';
 import './index.module.css';
 import App from './app';
@@ -11,9 +11,9 @@ import CardRepository from './service/card_repository';
 const authService = new AuthService();
 const cardRepository = new CardRepository();
 const imageUploader = new ImageUploader();
-const fileInput = (props) => (
+const fileInput = memo((props) => (
   <ImageFileInput {...props} imageUploader={imageUploader} />
-); //  여기서 컴포넌트 만들어 전달하면 Dependency Injection 쉬움
+)); //  여기서 컴포넌트 만들어 전달하면 Dependency Injection 쉬움
 
 ReactDOM.render(
   <React.StrictMode>

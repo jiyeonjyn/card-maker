@@ -1,6 +1,5 @@
-import firebaseApp from './firebase'; // import 필수
+import { firebaseAuth } from './firebase'; // import 필수
 import {
-  getAuth,
   signInWithPopup,
   GoogleAuthProvider,
   GithubAuthProvider,
@@ -9,22 +8,18 @@ import {
 } from 'firebase/auth';
 
 class AuthService {
-  constructor() {
-    this.auth = getAuth();
-  }
-
   login(providerName) {
     const authProvider = this.getProvider(providerName);
-    return signInWithPopup(this.auth, authProvider);
+    return signInWithPopup(firebaseAuth, authProvider);
   }
 
   logout() {
-    signOut(this.auth);
+    signOut(firebaseAuth);
   }
 
   onAuthChange(onUserChanged) {
     // 로그인 된 유저가 있는지 확인
-    onAuthStateChanged(this.auth, (user) => {
+    onAuthStateChanged(firebaseAuth, (user) => {
       onUserChanged(user);
     });
   }
