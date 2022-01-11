@@ -9,10 +9,10 @@ function App({ authService, FileInput, cardRepository }) {
     <div className={styles.app}>
       <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Switch>
-          <Route exact path="/">
+          <Route exact path="/" component={Login}>
             <Login authService={authService} />
           </Route>
-          <Route path="/maker">
+          <Route path="/maker" component={Maker}>
             <Maker
               FileInput={FileInput}
               authService={authService}
