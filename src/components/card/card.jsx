@@ -4,8 +4,7 @@ import styles from './card.module.css';
 const DEFAULT_IMAGE = '/images/default_logo.png';
 const Card = ({ card }) => {
   // deconstructing
-  const { name, company, theme, title, email, message, fileName, fileURL } =
-    card;
+  const { name, company, theme, title, email, message, fileURL } = card;
   const url = fileURL || DEFAULT_IMAGE;
   return (
     <li className={`${styles.card} ${getStyles(theme)}`}>

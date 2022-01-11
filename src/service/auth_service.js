@@ -1,3 +1,4 @@
+import firebaseApp from './firebase'; // import 필수
 import {
   getAuth,
   signInWithPopup,
@@ -6,7 +7,6 @@ import {
   signOut,
   onAuthStateChanged,
 } from 'firebase/auth';
-import firebaseApp from './firebase'; // import 필수
 
 class AuthService {
   constructor() {
@@ -23,6 +23,7 @@ class AuthService {
   }
 
   onAuthChange(onUserChanged) {
+    // 로그인 된 유저가 있는지 확인
     onAuthStateChanged(this.auth, (user) => {
       onUserChanged(user);
     });
