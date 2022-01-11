@@ -1,7 +1,8 @@
 import React, { memo } from 'react';
 import styles from './card.module.css';
 
-const DEFAULT_IMAGE = '/images/default_logo.png';
+const DEFAULT_IMAGE =
+  'https://jiyeonjyn.github.io/card-maker/images/default_logo.png';
 
 const Card = memo(({ card }) => {
   // deconstructing
